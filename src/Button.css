@@ -1,0 +1,6 @@
+.Button {
+  flex: 1;
+  background-color: grey;
+  margin: 5px 10px;
+  font-size: 40px;
+}
