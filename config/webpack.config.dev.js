@@ -11,6 +11,7 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
+const findCacheDir = require('find-cache-dir');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -33,6 +34,7 @@ module.exports = {
   // This means they will be the "root" imports that are included in JS bundle.
   // The first two entry points enable "hot" CSS and auto-refreshes for JS.
   entry: [
+    'react-hot-loader/patch',
     // We ship a few polyfills by default:
     require.resolve('./polyfills'),
     // Include an alternative client for WebpackDevServer. A client's job is to
@@ -86,7 +88,7 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-      
+
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -111,18 +113,26 @@ module.exports = {
       // It's important to do this before Babel processes the JS.
       {
         test: /\.(js|jsx)$/,
+        include: paths.appSrc,
         enforce: 'pre',
         use: [
           {
+            loader: 'babel-loader',
+            query: {
+              cacheDirectory: findCacheDir({
+                name: 'react-scripts'
+              }),
+              plugins: [
+                'react-hot-loader/babel'
+              ]
+            }
+          }, {
+            loader: 'eslint-loader',
             options: {
-              formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint'),
-              
-            },
-            loader: require.resolve('eslint-loader'),
-          },
-        ],
-        include: paths.appSrc,
+              quiet: true
+            }
+          }
+        ]
       },
       {
         // "oneOf" will traverse all following loaders until one will
@@ -146,7 +156,7 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              
+
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
               // directory for faster rebuilds.

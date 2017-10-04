@@ -1,3 +1,5 @@
+// https://stackoverflow.com/questions/42987939/styled-components-organization
+
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
