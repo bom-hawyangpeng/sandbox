@@ -1,7 +1,7 @@
 {
   "name": "sandbox",
   "version": "0.1.0",
-  "homepage": "https://bom-hawyangpeng.github.io/sandbox",
+  "homepage": "https://bom-hawyangpeng.github.io",
   "private": true,
   "dependencies": {
     "autoprefixer": "7.1.2",

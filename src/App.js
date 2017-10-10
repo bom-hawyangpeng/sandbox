@@ -61,8 +61,10 @@ class App extends Component {
   handleClick(highlight) {
     if ( highlight ) {
       this.increaseScore(1);
-      this.selectRandomCell();
+    } else {
+      this.decreaseScore(1);
     }
+    this.selectRandomCell();
   }
 
   selectRandomCell() {
@@ -73,6 +75,10 @@ class App extends Component {
 
   increaseScore(score) {
     this.setState({ score: this.state.score + score});
+  }
+
+  decreaseScore(score) {
+    this.setState({ score: this.state.score - score});
   }
 
   render() {
