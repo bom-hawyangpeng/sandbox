@@ -11,8 +11,8 @@ import './App.css';
 const Button = styled.button`
   background-color: ${props => props.highlight ? 'palevioletred' : 'lightgrey'};
   margin: 10px;
-  height: 3em;
-  width: 3em;
+  height: 2em;
+  width: 2em;
   font-size: 25px;
   border: none;
 `;
@@ -33,7 +33,18 @@ const Row = styled.div`
 //   background-color: #f0f0f0;
 // `;
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  @media (max-width: 360px) {
+    flex-direction: column;
+  }
+`;
+
 const Flex = styled(GSFlex)`
+  display: flex;
+  flex-direction: row;
   width: 1248px;
 
   @media (max-width: 1280px) {
@@ -51,15 +62,20 @@ const Flex = styled(GSFlex)`
 
 const Box = styled(GSBox)`
   background-color: lightgrey;
-  margin: 16px;
+  margin: 1em;
+
+  @media (max-width: 1280px) {
+    margin: 1em;
+  }
 
   @media (max-width: 1024px) {
     background-color: lightblue;
+    margin: 0.5em
   }
 
   @media (max-width: 768px) {
     background-color: lightgreen;
-    margin: 8px;
+    margin: 0.5rem;
   }
 `;
 
@@ -122,23 +138,26 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome to React1</h1>
         </header>
         <Flex>
-          <Box width={1/2}>
-            1/2
+          <Box width={1/4}>
+            22.6°
           </Box>
           <Box width={1/2}>
-            1/2
+            1/6
+          </Box>
+          <Box width={1/4}>
+            1/6
           </Box>
         </Flex>
-        {/*<Avatar className={'myAvatar'} src={require('./logo.svg')} name={123}/>
+        {/*<Avatar className={'myAvatar'} src={require('./logo.svg')} name={123}/>*/}
         <p className="App-intro">
           Score: {this.state.score}
         </p>
         <Grid>
           {this.generateGrid()}
-        </Grid>*/}
+        </Grid>
       </div>
     );
   }

@@ -12,5 +12,5 @@ if (typeof Promise === 'undefined') {
 require('whatwg-fetch');
 
 // Object.assign() is commonly used with React.
-// It will use the native implementation if it's present and isn't buggy.
+// It will use the native implementation if it's present a nd isn't buggy.
 Object.assign = require('object-assign');
