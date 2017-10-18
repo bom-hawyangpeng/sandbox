@@ -4,6 +4,7 @@
   "homepage": "https://bom-hawyangpeng.github.io",
   "private": true,
   "dependencies": {
+    "antd": "^2.13.5",
     "autoprefixer": "7.1.2",
     "babel-core": "6.25.0",
     "babel-eslint": "7.2.3",
@@ -28,10 +29,12 @@
     "gh-pages": "^1.0.0",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
+    "material-ui": "^0.19.4",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.6",
     "promise": "8.0.1",
+    "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dev-utils": "^4.1.0",
     "react-dom": "^16.0.0",
@@ -46,7 +49,9 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "build": "NODE_ENV=production babel ./src -d dist/",
+    "flow": "flow",
+    "prepublish": "npm run build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "node scripts/test.js --env=jsdom",
@@ -73,6 +78,12 @@
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
     ],
+    "modulePathIgnorePatterns": [
+      "node_modules",
+      "config",
+      "public",
+      "static"
+    ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
@@ -87,17 +98,28 @@
   },
   "babel": {
     "presets": [
-      "react-app"
+      "react-app",
+      "flow"
     ],
     "plugins": [
-      "babel-plugin-styled-components"
+      [
+        "babel-plugin-styled-components",
+        {
+          "displayName": false
+        }
+      ]
     ]
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-flow": "^6.23.0",
+    "enzyme": "^3.1.0",
     "find-cache-dir": "^1.0.0",
+    "flow-bin": "^0.57.3",
+    "grid-styled": "^2.0.0-11",
     "pushstate-server": "^3.0.1",
     "react-hot-loader": "^3.0.0-beta.7"
   }

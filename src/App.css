@@ -1,4 +1,7 @@
 .App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
@@ -8,6 +11,7 @@
 }
 
 .App-header {
+  align-self: stretch;
   background-color: #222;
   height: 150px;
   padding: 20px;

@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
+// import { Avatar as FlowAvatar } from 'flow-sandbox';
+import { Flex as GSFlex, Box as GSBox } from 'grid-styled';
 
 import logo from './logo.svg';
 import './App.css';
@@ -25,6 +27,40 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+`;
+
+// const Avatar = styled(FlowAvatar)`
+//   background-color: #f0f0f0;
+// `;
+
+const Flex = styled(GSFlex)`
+  width: 1248px;
+
+  @media (max-width: 1280px) {
+    width: 960px;
+  }
+
+  @media (max-width: 1024px) {
+    width: 768px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
+const Box = styled(GSBox)`
+  background-color: lightgrey;
+  margin: 16px;
+
+  @media (max-width: 1024px) {
+    background-color: lightblue;
+  }
+
+  @media (max-width: 768px) {
+    background-color: lightgreen;
+    margin: 8px;
+  }
 `;
 
 class App extends Component {
@@ -88,12 +124,21 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
+        <Flex>
+          <Box width={1/2}>
+            1/2
+          </Box>
+          <Box width={1/2}>
+            1/2
+          </Box>
+        </Flex>
+        {/*<Avatar className={'myAvatar'} src={require('./logo.svg')} name={123}/>
         <p className="App-intro">
           Score: {this.state.score}
         </p>
         <Grid>
           {this.generateGrid()}
-        </Grid>
+        </Grid>*/}
       </div>
     );
   }
